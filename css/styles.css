@@ -1,0 +1,118 @@
+:root {
+    --primary-color: #004b87;
+    --secondary-color: #2c3e50;
+    --accent-color: #00a896;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-color: #333333;
+    --border-radius: 10px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 { margin: 0; font-size: 2rem; }
+header p { margin-top: 0.5rem; opacity: 0.9; }
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.grid-modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.card.badge-fase1 { border-left: 5px solid var(--accent-color); }
+.card.badge-disabled { border-left: 5px solid #95a5a6; opacity: 0.8; }
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.card-tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.tag-fase1 { background-color: #e6f7f5; color: var(--accent-color); }
+.tag-future { background-color: #f0f0f0; color: #7f8c8d; }
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn:hover { background-color: #003366; }
+.btn-disabled { background-color: #bdc3c7; cursor: not-allowed; }
+
+/* Paneles Interactivos para los Módulos 1-6 */
+.interactive-panel {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.controls-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+input[type="number"], select {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

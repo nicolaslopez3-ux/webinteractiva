@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 2: Regla del Trapecio - UTP</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="btn-back">← Volver al Inicio</a>
+        <h1>Módulo 2: Regla del Trapecio</h1>
+        <p>Aproximación del área bajo la curva mediante trapecios en subintervalos iguales.</p>
+
+        <div class="card">
+            <h3>Parámetros de Entrada</h3>
+            <form id="calc-form">
+                <label>Función f(x):</label>
+                <input type="text" id="fx" value="x^2" placeholder="Ej: x^2, Math.sin(x)">
+                
+                <label>Límite inferior (a):</label>
+                <input type="number" id="limit-a" value="0" step="any">
+                
+                <label>Límite superior (b):</label>
+                <input type="number" id="limit-b" value="2" step="any">
+                
+                <label>Subintervalos (n):</label>
+                <input type="number" id="sub-n" value="4" min="1">
+                
+                <button type="button" onclick="calcularTrapecio()">Calcular Trapecio</button>
+            </form>
+        </div>
+
+        <div class="card" id="resultado-card">
+            <h3>Resultado y Procedimiento</h3>
+            <div id="salida">Ingresa los datos y presiona calcular.</div>
+        </div>
+    </div>
+
+    <script>
+        function evaluar(fxStr, x) {
+            let expr = fxStr.replace(/x/g, `(${x})`).replace(/\^/g, '**');
+            return eval(expr);
+        }
+
+        function calcularTrapecio() {
+            const fx = document.getElementById('fx').value;
+            const a = parseFloat(document.getElementById('limit-a').value);
+            const b = parseFloat(document.getElementById('limit-b').value);
+            const n = parseInt(document.getElementById('sub-n').value);
+
+            const h = (b - a) / n;
+            let suma = evaluar(fx, a) + evaluar(fx, b);
+            let detalle = `<p><b>Δx (h):</b> (${b} - ${a}) / ${n} = ${h}</p><ul>`;
+            
+            detalle += `<li>f(x0 = ${a}) = ${evaluar(fx, a).toFixed(4)}</li>`;
+
+            for (let i = 1; i < n; i++) {
+                let xi = a + i * h;
+                let fxi = evaluar(fx, xi);
+                suma += 2 * fxi;
+                detalle += `<li>2 * f(x${i} = ${xi.toFixed(4)}) = ${(2 * fxi).toFixed(4)}</li>`;
+            }
+
+            detalle += `<li>f(xn = ${b}) = ${evaluar(fx, b).toFixed(4)}</li></ul>`;
+            const resultado = (h / 2) * suma;
+
+            document.getElementById('salida').innerHTML = `
+                ${detalle}
+                <h4><b>Resultado T${n}:</b> ${resultado.toFixed(6)}</h4>
+            `;
+        }
+    </script>
+</body>
+</html>

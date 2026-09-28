@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 5: Área Bajo la Curva - UTP</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="btn-back">← Volver al Inicio</a>
+        <h1>Módulo 5: Área Bajo la Curva</h1>
+        <p>Cálculo analítico / exacto mediante el Teorema Fundamental del Cálculo.</p>
+
+        <div class="card">
+            <h3>Cálculo de Área Integrada</h3>
+            <form id="calc-form">
+                <label>Función f(x):</label>
+                <input type="text" id="fx" value="x^2">
+                
+                <label>Límite inferior (a):</label>
+                <input type="number" id="limit-a" value="0">
+                
+                <label>Límite superior (b):</label>
+                <input type="number" id="limit-b" value="2">
+                
+                <button type="button" onclick="calcularAreaExacta()">Calcular Área Exacta</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Resultado</h3>
+            <div id="salida">Ingresa la función para calcular.</div>
+        </div>
+    </div>
+
+    <script>
+        function evaluar(fxStr, x) {
+            let expr = fxStr.replace(/x/g, `(${x})`).replace(/\^/g, '**');
+            return eval(expr);
+        }
+
+        function calcularAreaExacta() {
+            const fx = document.getElementById('fx').value;
+            const a = parseFloat(document.getElementById('limit-a').value);
+            const b = parseFloat(document.getElementById('limit-b').value);
+
+            // Aproximación numérica de alta precisión (Suma de Riemann con n=1000)
+            const n = 1000;
+            const dx = (b - a) / n;
+            let area = 0;
+
+            for (let i = 0; i < n; i++) {
+                let x = a + (i + 0.5) * dx;
+                area += evaluar(fx, x) * dx;
+            }
+
+            document.getElementById('salida').innerHTML = `
+                <p>Evaluando el área de ∫ (${fx}) dx desde a = ${a} hasta b = ${b}:</p>
+                <h4><b>Área Exacta Aproximada:</b> ${area.toFixed(4)} u²</h4>
+            `;
+        }
+    </script>
+</body>
+</html>

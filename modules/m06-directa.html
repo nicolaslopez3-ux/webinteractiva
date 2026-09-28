@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 6: Integración Directa - UTP</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="btn-back">← Volver al Inicio</a>
+        <h1>Módulo 6: Integración Directa y Formularios</h1>
+        <p>Tabla de antiderivadas y resolución paso a paso de fórmulas directas.</p>
+
+        <div class="card">
+            <h3>Formulario e Integrales Directas</h3>
+            <ul>
+                <li><b>Regla de la Potencia:</b> ∫ xⁿ dx = (xⁿ⁺¹)/(n+1) + C</li>
+                <li><b>Integral Trigonométrica:</b> ∫ sec²(x) dx = tan(x) + C</li>
+                <li><b>Integral de Secante Cubo:</b> ∫ sec³(y) dy = ½ sec(y)tan(y) + ½ ln|sec(y) + tan(y)| + C</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Calculadora de Potencias Directas ∫ xⁿ dx</h3>
+            <label>Exponente (n):</label>
+            <input type="number" id="exp-n" value="2">
+            <button type="button" onclick="calcularAntiderivada()">Calcular Antiderivada</button>
+            
+            <div id="salida" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+
+    <script>
+        function calcularAntiderivada() {
+            const n = parseFloat(document.getElementById('exp-n').value);
+            if (n === -1) {
+                document.getElementById('salida').innerHTML = "<b>Resultado:</b> ln|x| + C";
+            } else {
+                let nuevoN = n + 1;
+                document.getElementById('salida').innerHTML = `<b>Resultado:</b> (x^${nuevoN}) / ${nuevoN} + C`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Sumas de Riemann - UTP</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Módulo 1: Sumas de Riemann</h1>
+        <p><a href="../index.html" style="color: white;">← Volver al Menú Principal</a></p>
+    </header>
+
+    <div class="container">
+        <!-- Sección Teórica -->
+        <section class="interactive-panel">
+            <h2>Fundamento Teórico</h2>
+            <p>Las sumas de Riemann aproximan el área bajo una curva dividiendo la región en $n$ subintervalos de ancho $\Delta x = \frac{b-a}{n}$.</p>
+            <ul>
+                <li><strong>Suma Izquierda:</strong> $L_n = \sum_{i=0}^{n-1} f(x_i) \Delta x$</li>
+                <li><strong>Suma Derecha:</strong> $R_n = \sum_{i=1}^{n} f(x_i) \Delta x$</li>
+                <li><strong>Punto Medio:</strong> $M_n = \sum_{i=1}^{n} f(\bar{x}_i) \Delta x$ donde $\bar{x}_i = \frac{x_{i-1} + x_i}{2}$</li>
+            </ul>
+        </section>
+
+        <!-- Visualizador Interactivo -->
+        <section class="interactive-panel">
+            <h2>Visualizador Interactivo de Convergencia</h2>
+            <div class="controls-group">
+                <label>Función:
+                    <select id="funcSelect">
+                        <option value="x2">f(x) = x²</option>
+                        <option value="invX">f(x) = 1/x</option>
+                        <option value="exp">f(x) = e^x</option>
+                    </select>
+                </label>
+                <label>Subdivisiones (n): 
+                    <input type="number" id="nVal" value="4" min="1" max="50">
+                </label>
+                <label>Tipo de Suma:
+                    <select id="typeSelect">
+                        <option value="left">Izquierda (L_n)</option>
+                        <option value="right">Derecha (R_n)</option>
+                        <option value="midpoint">Punto Medio (M_n)</option>
+                    </select>
+                </label>
+                <button class="btn" onclick="updatePlot()">Actualizar Gráfica</button>
+            </div>
+
+            <div id="riemann-plot" style="width:100%; height:450px;"></div>
+        </section>
+
+        <!-- Ejemplos Resueltos Paso a Paso -->
+        <section class="interactive-panel">
+            <h2>Ejemplos Resueltos Paso a Paso</h2>
+            
+            <h3>Ejemplo 1: Calcule $L_4$, $R_4$ y $M_4$ para $f(x) = x^2$ en $[0, 2]$</h3>
+            <p><strong>Paso 1:</strong> Determinar el ancho de cada subintervalo:</p>
+            $$\Delta x = \frac{2 - 0}{4} = 0.5$$
+            <p>Los puntos de la partición son: $x_0 = 0$, $x_1 = 0.5$, $x_2 = 1.0$, $x_3 = 1.5$, $x_4 = 2.0$.</p>
+            
+            <p><strong>Paso 2:</strong> Suma por la izquierda ($L_4$):</p>
+            $$L_4 = [f(0) + f(0.5) + f(1.0) + f(1.5)] \cdot 0.5 = [0 + 0.25 + 1.0 + 2.25] \cdot 0.5 = 1.75$$
+
+            <p><strong>Paso 3:</strong> Comparación con la integral exacta:</p>
+            $$\int_0^2 x^2 dx = \left[ \frac{x^3}{3} \right]_0^2 = \frac{8}{3} \approx 2.6667$$
+        </section>
+    </div>
+
+    <script src="../js/visualizers.js"></script>
+    <script>
+        function updatePlot() {
+            const func = document.getElementById('funcSelect').value;
+            const n = parseInt(document.getElementById('nVal').value);
+            const type = document.getElementById('typeSelect').value;
+            plotRiemann(func, 0, 2, n, type);
+        }
+        // Inicializar al cargar
+        window.onload = updatePlot;
+    </script>
+</body>
+</html>

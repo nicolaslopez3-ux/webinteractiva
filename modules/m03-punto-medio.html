@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Regla del Punto Medio - UTP</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="btn-back">← Volver al Inicio</a>
+        <h1>Módulo 3: Regla del Punto Medio</h1>
+        <p>Aproximación evaluando la función en el centro de cada subintervalo.</p>
+
+        <div class="card">
+            <h3>Parámetros de Entrada</h3>
+            <form id="calc-form">
+                <label>Función f(x):</label>
+                <input type="text" id="fx" value="x^2" placeholder="Ej: x^2">
+                
+                <label>Límite inferior (a):</label>
+                <input type="number" id="limit-a" value="0" step="any">
+                
+                <label>Límite superior (b):</label>
+                <input type="number" id="limit-b" value="2" step="any">
+                
+                <label>Subintervalos (n):</label>
+                <input type="number" id="sub-n" value="4" min="1">
+                
+                <button type="button" onclick="calcularPuntoMedio()">Calcular Punto Medio</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Resultado y Procedimiento</h3>
+            <div id="salida">Ingresa los datos y presiona calcular.</div>
+        </div>
+    </div>
+
+    <script>
+        function evaluar(fxStr, x) {
+            let expr = fxStr.replace(/x/g, `(${x})`).replace(/\^/g, '**');
+            return eval(expr);
+        }
+
+        function calcularPuntoMedio() {
+            const fx = document.getElementById('fx').value;
+            const a = parseFloat(document.getElementById('limit-a').value);
+            const b = parseFloat(document.getElementById('limit-b').value);
+            const n = parseInt(document.getElementById('sub-n').value);
+
+            const dx = (b - a) / n;
+            let suma = 0;
+            let detalle = `<p><b>Δx:</b> (${b} - ${a}) / ${n} = ${dx}</p><ul>`;
+
+            for (let i = 0; i < n; i++) {
+                let x_medio = a + (i + 0.5) * dx;
+                let eval_m = evaluar(fx, x_medio);
+                suma += eval_m;
+                detalle += `<li>m${i+1} = ${x_medio.toFixed(4)} → f(m${i+1}) = ${eval_m.toFixed(4)}</li>`;
+            }
+
+            detalle += `</ul>`;
+            const resultado = dx * suma;
+
+            document.getElementById('salida').innerHTML = `
+                ${detalle}
+                <h4><b>Resultado M${n}:</b> ${resultado.toFixed(6)}</h4>
+            `;
+        }
+    </script>
+</body>
+</html>
