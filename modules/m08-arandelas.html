@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 8: Método de Arandelas - Cálculo Integral</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- KaTeX CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Módulo 8: Sólidos de Revolución (Método de Arandelas)</h1>
+        <p>Tecnología en Desarrollo de Software - Universidad Tecnológica de Pereira</p>
+    </header>
+
+    <div class="container">
+        <a href="../index.html" class="btn" style="margin-bottom: 20px; display: inline-block;">&larr; Volver al Inicio</a>
+        
+        <div class="card" style="padding: 30px;">
+            <h2>Fundamentos Teóricos</h2>
+            <p>El método de arandelas es una extensión del método de discos. Se emplea cuando la región que gira entre dos curvas deja un "hueco" en el centro al rotar alrededor de un eje, formando arandelas circulares en lugar de discos sólidos.</p>
+            
+            <h3 style="margin-top: 20px;">Fórmula General</h3>
+            <p>Si tenemos dos funciones continuas $f(x)$ (radio exterior) y $g(x)$ (radio interior) tales que $f(x) \geq g(x) \geq 0$, el volumen del sólido alrededor del eje $x$ es:</p>
+            <div style="text-align: center; font-size: 1.2rem; margin: 20px 0;">
+                $$V = \pi \int_{a}^{b} \left( [f(x)]^2 - [g(x)]^2 \right) dx$$
+            </div>
+
+            <h3 style="margin-top: 20px;">Diferencia Clave con Discos</h3>
+            <p>Mientras que el método de discos usa un solo radio al cuadrado ($R^2$), el método de arandelas resta el área del agujero interior utilizando un radio exterior y un radio interior ($R^2 - r^2$).</p>
+        </div>
+    </div>
+</body>
+</html>
