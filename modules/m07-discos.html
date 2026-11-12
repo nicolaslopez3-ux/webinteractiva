@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 7: Método de Discos - Cálculo Integral</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- KaTeX CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Módulo 7: Sólidos de Revolución (Método de Discos)</h1>
+        <p>Tecnología en Desarrollo de Software - Universidad Tecnológica de Pereira</p>
+    </header>
+
+    <div class="container">
+        <a href="../index.html" class="btn" style="margin-bottom: 20px; display: inline-block;">&larr; Volver al Inicio</a>
+        
+        <div class="card" style="padding: 30px;">
+            <h2>Fundamentos Teóricos</h2>
+            <p>El método de discos se utiliza para calcular el volumen de un sólido de revolución cuando la región bajo una curva gira alrededor de un eje. Imagina que el sólido está formado por una infinidad de discos circulares infinitamente delgados.</p>
+            
+            <h3 style="margin-top: 20px;">Fórmula General</h3>
+            <p>Si una región gira alrededor del eje $x$, el volumen $V$ del sólido generado en el intervalo $[a, b]$ se define como:</p>
+            <div style="text-align: center; font-size: 1.2rem; margin: 20px 0;">
+                $$V = \pi \int_{a}^{b} [f(x)]^2 \, dx$$
+            </div>
+
+            <h3 style="margin-top: 20px;">Ejemplo Práctico</h3>
+            <p>Calcular el volumen del sólido generado al girar la función $f(x) = \sqrt{x}$ en el intervalo $[0, 4]$ alrededor del eje $x$:</p>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li>Planteamos la integral: $V = \pi \int_{0}^{4} (\sqrt{x})^2 \, dx = \pi \int_{0}^{4} x \, dx$</li>
+                <li>Integramos: $\frac{x^2}{2}$ evaluado de 0 a 4.</li>
+                <li>Resultado: $\pi \left[ \frac{4^2}{2} - 0 \right] = 8\pi \text{ unidades cúbicas.}$</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
